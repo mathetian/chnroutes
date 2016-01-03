@@ -224,7 +224,15 @@ def fetch_ip_data():
         mask2=32-int(math.log(num_ip,2))
         
         results.append((starting_ip,mask,mask2))
-         
+
+    # add whitelist for local-host ip
+    local_ip    = [ '10.0.0.0', '127.0.0.0', '172.0.0.0', '198.0.0.0']
+    local_mask  = ['255.0.0.0', '255.0.0.0', '255.0.0.0', '255.0.0.0']
+    local_mask2 = [16777216, 16777216, 16777216, 16777216]
+
+    for index in range(len(local_ip)):
+        results.append((local_ip[index], local_mask[index], local_mask2[index]))
+
     return results
 
 
